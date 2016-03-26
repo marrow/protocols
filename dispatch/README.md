@@ -209,6 +209,24 @@ setup(
 
 When installing your package, you can now use the form `package[label]` or `package[label]=version`, etc., and the additional dependencies will be automatically activated and pulled in. The entry point will only be available for use if those additional dependencies are met, though explicit use of the label at package installation time is _not_ required.
 
+To subsequently utilize a dispatcher by name you can utilize `pkg_resources`:
+
+```python
+from pkg_resources import iter_entry_points
+
+Dispatch = iter_entry_points('web.dispatch', 'object')[0].load()
+```
+
+You'll must handle the case of it not existing, and may optionally handle the case of multiple competing implementations existing. As a shortcut for plugin management such as the above you can use the [marrow.package](https://github.com/marrow/package) library to handle the case of passing in a dispatcher _or_ a string easiy:
+
+```python
+from marrow.package.loader import load
+
+Dispatch = load('traversal', 'web.dispatch')
+```
+
+Non-string values for the first argument are returned unaltered. The `marrow.package` library provides other plugin manangement tools that are useful for discovery and management.
+
 
 ## Application Configuration
 
