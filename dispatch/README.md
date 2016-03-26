@@ -217,7 +217,7 @@ from pkg_resources import iter_entry_points
 Dispatch = iter_entry_points('web.dispatch', 'object')[0].load()
 ```
 
-You'll must handle the case of it not existing, and may optionally handle the case of multiple competing implementations existing. As a shortcut for plugin management such as the above you can use the [marrow.package](https://github.com/marrow/package) library to handle the case of passing in a dispatcher _or_ a string easiy:
+You'll must handle the case of it not existing, and may optionally handle the case of multiple competing implementations existing. As a shortcut for plugin management such as the above you can use the [marrow.package](https://github.com/marrow/package) library to handle the case of passing in a dispatcher _or_ a string easily:
 
 ```python
 from marrow.package.loader import load
