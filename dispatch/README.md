@@ -28,6 +28,8 @@ The mechanisms of dispatch are now nearly universal, centered around a few prima
 
 * **Traversal** descends through mappings (dictionaries in Python) looking up each path element via dictionary `__getitem__` access and, like object dispatch, represents a filesystem-like view. This is a principal dispatcher provided by the Pyramid framework. We have an implementation of [the process](http://docs.pylonsproject.org/projects/pyramid/en/1.4-branch/narr/traversal.html) in the [web.dispatch.traversal](https://github.com/marrow/web.dispatch.traversal) package. 
 
+* **REST dispatch** uses the HTTP verb present in a web request to determine which endpoint should be utilized; this is often baked into the URL router in other implementations, but is distinct under this protocol.  An example implementation compatible with WebOb `request` attributes on the context (i.e. WebCore) is available in the [web.dispatch.resource](https://github.com/marrow/web.dispatch.resource) package.
+
 In order to provide a uniform interface for the consumption of paths in "processed parts", as well as to allow for the easy migration from one dispatch method to another as descent progresses, this page serves as documentation for both the dispatcher event producer and framework consumer sides of this protocol.
 
 
