@@ -73,14 +73,17 @@ A server is any software service which wishes to respond to RPC/API calls from a
 5. Discard requests which fail validation by returning a `400 Bad Request` status code with explanation string in the body.
 
 
-## Implementations
+## Implementations and Additional Material
 
-The official implementation of the above protocol in Python is available from this package.  A [PHP implementation](https://github.com/marrow/htdsa-php/) is also available.
+The official implementation of the above protocol in Python is available from the [htdsa-python](https://github.com/marrow/htdsa-python/) package.  A [PHP implementation](https://github.com/marrow/htdsa-php/) is also available.
 
 Additional implementations may be available.
+
+A [flow diagram of one possible single sign-on scenario](http://s.webcore.io/0u0e3u3t3q42) is available, illustrating how a minimal number of HTDSA-secured calls is required for the minting of application-bound user sessions.
 
 
 ##  Old Links
 
 * [Semi-RFC for header/body signatures of HTTP requests.](https://gist.github.com/amcgregor/db76655c47b5f550dee0)
 * [Example implementation in Python.](https://gist.github.com/amcgregor/12d79d2cfb039275b337)
+
