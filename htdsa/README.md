@@ -15,7 +15,7 @@ This document specifies an experimental and simplified HTTP digital signature al
 This document describes a pre-exchanged public/private digital signature algorithm used to authenticate HTTP requests from known third parties, and for those third parties to authenticate the HTTP response returning from the server.  Special attention has been paid to MITM attacks: mitigated through the use of end-to-end SSL/TLS channel encryption with verified certificates in addition to dedicated client-server signing key pairs.
 
 
-## Rationale and Goals
+## Rationale
 
 Existing technologies exist which purport to increase security while individually handling authentication (OpenID), authorization (OAuth), or a mixture of the two (OAuth 2).  The problem with these technologies is that of design-by-committee.  The major influencers of these standards has been enterprise, which generally means they're severely over-engineered, hideously difficult to configure securely, and exhibit bugs which result in multiple incompatible independent implementations, most notably with OAuth 2.  Additionally, because of the taint of enterprise added to those committees, the standards tend to be kitchen sinks of various proposals: OAuth 2 includes support for SASL.
 
@@ -26,6 +26,18 @@ This proposal covers the primary use cases (starting with authenticated API/RPC 
 JSON Web Tokens (JWT) suffer from [some pretty extreme issues](https://auth0.com/blog/2015/03/31/critical-vulnerabilities-in-json-web-token-libraries/) and is similarly over-engineered, requiring expansive trees of logic to be compatible, allowing a signature algorithm of "none", giving control over the choice of algorithm to the attacker, sports an extensive list of algorithms, and requires some truly silly Base64-encoded JSON blobs.
 
 SAML is an insanely complex XML and X.509-based protocol.  This protocol is effectively a restricted subset of SAML in terms of how it operates, without any of that XML overhead.
+
+## Features and Goals
+
+HTDSA explicitly solves the following security problems:
+
+* **Request forgery.** A service provider offering an API secured using HTDSA will rapidly reject requests by unknown application identities (since no key will be found) and would reject unsigned messages to those endpoints. If you have a signature and valid identity, you only need to verify the signature to gaurentee the message was constructed initially by the identifying application.
+* **Response forgery.** To mitigate man-in-the-middle (MITM) attacks where an attacker can inject alternate responses to requests (such as OpenSSL's [CVE-2014-0224](https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2014-0224)) the responses are verified by the requesting application.
+* **Replay protection.** Server clocks must be NTP synchronized, as requests older than 30 seconds, or "in the future" by more than one second are rejected. The maximum window for replay is 31 seconds.
+* **Cross-application re-use protection.** Because the service provider uses keys unique to each requesting application, a properly written application will fail to validate, and reject, responses to signed requests that are unsigned or whose signature was intended for another application.
+* **Application revocation.** With each application having its own signing key, and the service provider generating a new keypair for each registered application, revoking keys for disruptive applications, or even having a key rotation policy for new versions, protects you against breaks in individual applications up to specific application versions, and alleviates some of the worry of long-term key re-use.
+* **Proof-of-work rate limiting.** Digital signatures aren't the fastest things in the world, and are somewhat computationally intensive. Use of a signature on the requests like this serves as a natural rate limit.
+* **Easy SSO without token re-use.** In single sign-on (SSO) scenarios, the grant tokens (user session tokens) minted by the identity provider (IDP) service are similarly signed for specific applications, preventing applications from sharing individual tokens, and optionally providing each application its own unique opaque identifier for users, i.e. to prevent correlation attacks. No attempt is made to make the tokens purely usable in isolation; revocation requires checking with the IDP and the IDP tracking the tokens (referred to as "application grants".)
 
 
 ## Application (Client) Implementation Details
