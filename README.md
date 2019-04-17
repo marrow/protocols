@@ -1,2 +1,5 @@
-# protocols
-A repository of non-code documenting Marrow Open Source Collective-standardized protocols.
+# Marrow Open Source Collective
+
+## Universal User Stories
+
+This branch is set up to store and track universal user stories common to a majority of applications.
