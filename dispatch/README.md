@@ -204,9 +204,9 @@ A substantial addition in revision 1.2 is the addition of a `trace` protocol. Gi
 >>> def sample(context): ...
 >>> list(ObjectDispatch().trace(None, sample))
 [Crumb(dispatcher=ObjectDispatch(0x4451111248, protect=True),
-	origin=<function foo at 0x109542440>,
+	origin=<function sample at 0x109542440>,
 	endpoint=True,
-	handler=<function foo at 0x109542440>)]
+	handler=<function sample at 0x109542440>)]
 ```
 
 Attempting to dispatch on a function, which is by definition an endpoint, results in only one possible destination, the function itself. Notice that the "directory listing" (since this is almost equivalent to performing a `ls` or `dir` on a filesystem directory, or `dir()` call on object) is expressed as Crumbs.
