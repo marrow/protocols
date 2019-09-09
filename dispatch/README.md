@@ -209,7 +209,7 @@ A substantial addition in revision 1.2 is the addition of a `trace` protocol. Gi
 	handler=<function sample at 0x109542440>)]
 ```
 
-Attempting to dispatch on a function, which is by definition an endpoint, results in only one possible destination, the function itself. Notice that the "directory listing" (since this is almost equivalent to performing a `ls` or `dir` on a filesystem directory, or `dir()` call on object) is expressed as Crumbs.
+Attempting to dispatch on a function, which is by definition an endpoint, results in only one possible destination, the function itself. Notice that the "directory listing" (since this is almost equivalent to performing a `ls` or `dir` on a filesystem directory, or `dir()` call on object) is expressed as Crumbs with relative paths.
 
 ```python
 >>> class Sample:
