@@ -239,7 +239,7 @@ Note that the tracing produced is not exhaustive; for example, the `nested` clas
 
 ### "Dynamic Path Segments"
 
-Paths often contain "variable elements", e.g. `/user/{id}/ping` represents a variable named "id" present within the path.  When tracing, variable elements are possible, and MUST be expressed by dispatchers the using this notation. If there is a known regular expression pattern associated with the variable match, use curly brace notation with the pattern colon-separated from the variable name, e.g. `"{id:[0-9]+}"`.
+Paths often contain "variable elements", e.g. `/user/{id}/ping` represents a variable named "id" present within the path.  When tracing, variable elements are possible, and MUST be expressed by dispatchers using this notation. If there is a known regular expression pattern associated with the variable match, use curly brace notation with the pattern colon-separated from the variable name, e.g. `"{id:[0-9]+}"`.  If no name can be determined, an empty set of braces—`{}`— may be utilized, and combined with a regular expression by leaving the left-hand split empty, e.g. `{:\w+}`.
 
 Object Dispatch provides an example of this when encountering a class implementing a `__getattr__` method.  E.g. if `class Users` implements `def __getattr__(self, id):` then the path segment will be named `"{id}"`.  When utilizing Resource Dispatch, the name would be sourced from the `__getitem__` method, instead.
 
