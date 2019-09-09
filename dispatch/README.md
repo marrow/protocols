@@ -269,6 +269,8 @@ If your dispatcher is non-business-critical, we encourage you to open source it 
 
 ## Plugin Registration
 
+**Please Note:** All of the following is possible using the statically defined `setup.cfg` syntax for specifying these argument values, which is becoming the preferred approach.
+
 Register your dispatcher under the de-facto standard namespace `web.dispatch` using something similar to the following in your package's `setup.py` file:
 
 ```python
