@@ -235,7 +235,7 @@ Crumb(dispatcher=ObjectDispatch(0x4451111248, protect=True),
 	handler=<function Sample.second at 0x109abf9e0>)]
 ```
 
-Note that the tracing produced is not exhaustive; for example, the `nested` class has no members; it _would_ be a terminus if dispatch down that branch is attempted, but a single level trace can't really know that.  Attempting a trace of that branch's `handler` would reveal no results.
+The tracing produced is not exhaustive; for example, the `nested` class has no members; it _would_ be a terminus if dispatch down that branch is attempted, but a single level trace can't really know that.  Attempting a trace of that branch's `handler` would reveal no results.
 
 ### "Dynamic Path Segments"
 
