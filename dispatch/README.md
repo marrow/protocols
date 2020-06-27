@@ -116,7 +116,7 @@ It is extremely important to maintain division of labour among different dispatc
 
 Dispatchers are callable objects (such as functions, or classes implementing `__call__`) that:
 
-* **Must** accept only two required, positional arguments: 
+* **Must** accept the following required, positional arguments: 
 
 	* An object representing the current processing context. This will generally be the web framework’s context or request object. 
 
