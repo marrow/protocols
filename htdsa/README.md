@@ -23,7 +23,7 @@ The problems with these "entrenched" standards include the fact that one of the 
 
 This proposal covers the primary use cases (starting with authenticated API/RPC calls) of these more complicated protocols, while excluding features that have been better implemented in other standards, such as OAuth 1's use of custom data encryption (in addition to the typical use of SSL/TLS) and without the complexity that results in OAuth 2's 70+ page security analysis whitepaper and multiple (incompatible) hot fix implementations, such as Facebook's, Google's, Yahoo!'s, and Twitter's.
 
-JSON Web Tokens (JWT) suffer from [some pretty extreme issues](https://auth0.com/blog/2015/03/31/critical-vulnerabilities-in-json-web-token-libraries/) and is similarly over-engineered, requiring expansive trees of logic to be compatible, allowing a signature algorithm of "none", giving control over the choice of algorithm to the attacker, sports an extensive list of algorithms, and requires some truly silly Base64-encoded JSON blobs.
+JSON Web Tokens (JWT) suffer from [some pretty extreme issues]([https://auth0.com/blog/2015/03/31/critical-vulnerabilities-in-json-web-token-libraries/](https://web.archive.org/web/20200413113035/https://auth0.com/blog/critical-vulnerabilities-in-json-web-token-libraries/)) and is similarly over-engineered, requiring expansive trees of logic to be compatible, allowing a signature algorithm of "none", giving control over the choice of algorithm to the attacker, sports an extensive list of algorithms, and requires some truly silly Base64-encoded JSON blobs.
 
 SAML is an insanely complex XML and X.509-based protocol.  This protocol is effectively a restricted subset of SAML in terms of how it operates, without any of that XML overhead.
 
